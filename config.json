@@ -1,0 +1,8 @@
+{
+  "replacements": [
+    {
+      "target": "1inch.io",
+      "iframeUrl": "https://example.com"
+    }
+  ]
+}

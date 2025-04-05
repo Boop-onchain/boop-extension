@@ -1,6 +1,9 @@
 async function replaceExampleWithIframe() {
   console.log("Running extension for Boop Extension");
   try {
+    // First check and remove duplicate cellInnerDiv elements
+    removeDuplicateCellInnerDiv();
+
     const response = await fetch(chrome.runtime.getURL("config.json"));
     const config = await response.json();
 
@@ -29,6 +32,9 @@ function processReplacements(replacements) {
     "Running replacement process at",
     new Date().toLocaleTimeString()
   );
+
+  // Check for duplicate cellInnerDiv elements
+  removeDuplicateCellInnerDiv();
 
   replacements.forEach((replacement) => {
     const target = replacement.target;
@@ -151,6 +157,21 @@ function getTextNodes(node) {
     }
   }
   return all;
+}
+
+function removeDuplicateCellInnerDiv() {
+  const cellInnerDivs = document.querySelectorAll(
+    '[data-testid="cellInnerDiv"]'
+  );
+  if (cellInnerDivs.length > 1) {
+    console.log(
+      `Found ${cellInnerDivs.length} cellInnerDiv elements, removing duplicates`
+    );
+    // Keep the first one and remove the rest
+    for (let i = 1; i < cellInnerDivs.length; i++) {
+      cellInnerDivs[i].remove();
+    }
+  }
 }
 
 // Make sure the function runs after the DOM is fully loaded

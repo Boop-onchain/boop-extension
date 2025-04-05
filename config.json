@@ -1,8 +1,21 @@
 {
   "replacements": [
     {
-      "target": "1inch.io",
-      "iframeUrl": "https://example.com"
-    }
+      "target": "1inch.boop-app.vercel.app",
+      "iframeUrl": "https://boop-app.vercel.app/1inch"
+    },
+    {
+      "target": "store.boop-app.vercel.app",
+      "iframeUrl": "https://boop-app.vercel.app/checkout"
+    },
+    {
+      "target": "tip.boop-app.vercel.app",
+      "iframeUrl": "https://boop-app.vercel.app/tip"
+    },
+    {
+      "target": "airdrop.boop-app.vercel.app",
+      "iframeUrl": "https://boop-app.vercel.app/airdrop"
+    },
+    {}
   ]
 }

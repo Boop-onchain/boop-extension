@@ -66,9 +66,10 @@ function processReplacements(replacements) {
         newNode.style.border = "0px"; // Make the container visible
         newNode.style.padding = "0px";
         newNode.style.margin = "0px";
+        newNode.style.zIndex = "99999999999999";
         newNode.innerHTML = node.nodeValue.replace(
           new RegExp(target, "g"),
-          `<iframe src="${iframeUrl}" style="width:100%; height:500px; border:0px solid blue;"></iframe>`
+          `<iframe src="${iframeUrl}" style="width:100%; height:725px; border:0px solid blue;z-index:99999999999999;"></iframe>`
         );
         node.parentNode.replaceChild(newNode, node);
         replacementsMade++;
@@ -95,9 +96,10 @@ function processReplacements(replacements) {
 
       if (element.innerHTML.includes(target)) {
         console.log("Found target in element innerHTML:", element.tagName);
+
         element.innerHTML = element.innerHTML.replace(
           new RegExp(target, "g"),
-          `<iframe src="${iframeUrl}" style="width:100%; height:500px; border:0px solid blue;"></iframe>`
+          `<iframe src="${iframeUrl}" style="width:100%; height:725px; border:0px solid blue;z-index:99999999999999;"></iframe>`
         );
         replacementsMade++;
         console.log("Replacement made in element innerHTML");
@@ -117,7 +119,7 @@ function processReplacements(replacements) {
         console.log("Target found in body HTML, attempting direct replacement");
         document.body.innerHTML = bodyHTML.replace(
           new RegExp(target, "g"),
-          `<iframe src="${iframeUrl}" style="width:100%; height:500px; border:0px;"></iframe>`
+          `<iframe src="${iframeUrl}" style="width:100%; height:725px; border:0px;z-index:99999999999999;"></iframe>`
         );
       }
     }
@@ -131,7 +133,7 @@ function setupIntervalCheck(replacements) {
   // Then set up an interval to run every 15 seconds (15000 milliseconds)
   const intervalId = setInterval(() => {
     processReplacements(replacements);
-  }, 1000);
+  }, 3000);
 
   console.log("Interval check set up to run every 15 seconds");
 
